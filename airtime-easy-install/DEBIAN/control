@@ -1,0 +1,15 @@
+Package: airtime-easy-install
+Source: airtime
+Version: 1.9.4-1
+Architecture: all
+Maintainer: Daniel James <daniel@64studio.com>
+Installed-Size: 2
+Depends: lsb-release
+Section: web
+Priority: optional
+Homepage: http://www.sourcefabric.org/en/products/airtime_overview/
+Description: Metapackage for the Airtime broadcast server
+ This metapackage installs the Airtime broadcast automation system
+ and all the dependencies required for a typical self-contained server.
+ For a multi-server install, you may prefer to install the airtime and
+ icecast2 packages separately. 
