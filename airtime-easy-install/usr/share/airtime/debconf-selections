@@ -1,0 +1,25 @@
+# Icecast2 hostname:
+airtime	airtime/icecast-hostname	string	localhost
+# Create apache2 config:
+# Choices: dedicated v-host, no thanks
+airtime	airtime/apache-setup	select	dedicated v-host
+# Icecast2 Source Password:
+airtime	airtime/icecast-sourcepw	string	donthackme
+# FQDN - apache-vhost ServerName:
+airtime	airtime/apache-servername	string	localhost
+# Remove 000-default apache config:
+# Choices: remove default, no change
+airtime	airtime/apache-deldefault	select	remove default
+# Icecast2 Relay Password:
+airtime	airtime/icecast-relaypw	string	donthackme
+# Set up monit?
+airtime	airtime/monit-setup	boolean	true
+# Email of the vhost-admin - ServerAdmin:
+airtime	airtime/apache-serveradmin	string	root@localhost
+# Icecast2 Admin Password:
+airtime	airtime/icecast-adminpw	string	donthackme
+# Set up Icecast2 for live HTTP streaming?
+airtime	airtime/icecast-setup	boolean	true
+# Set local timezone:
+airtime	airtime/localtime-setup	string	Etc/UTC
+

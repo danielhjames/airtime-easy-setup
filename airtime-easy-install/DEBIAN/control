@@ -4,7 +4,7 @@ Version: 1.9.4-1
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
 Installed-Size: 2
-Depends: lsb-release, gnupg (>= 1.0.6-4), postgresql, icecast2
+Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql
 Conflicts: sourcefabric-keyring
 Section: web
 Priority: optional

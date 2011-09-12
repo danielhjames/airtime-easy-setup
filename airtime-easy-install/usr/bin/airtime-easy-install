@@ -7,10 +7,13 @@ if [ "$DPKG_DEBUG" = "developer" ]; then
     set -x
 fi
 
-    echo "Reload the package list, as we may have changed it"
+    echo "Reloading the package list, as it may have changed..."
     apt-get update
 
-    echo "Install the apps"
-    apt-get -y install postgresql icecast2 airtime
+    echo "Setting defaults for non-interactive installation..."
+    debconf-set-selections /usr/share/airtime/debconf-selections
+
+    echo "Installing the Airtime system..."
+    DEBCONF_FRONTEND=noninteractive apt-get -y install airtime
 
 exit 0
