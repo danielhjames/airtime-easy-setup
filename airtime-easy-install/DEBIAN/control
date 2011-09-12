@@ -4,7 +4,8 @@ Version: 1.9.4-1
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
 Installed-Size: 2
-Depends: lsb-release
+Depends: lsb-release, gnupg (>= 1.0.6-4), postgresql, icecast2
+Conflicts: sourcefabric-keyring
 Section: web
 Priority: optional
 Homepage: http://www.sourcefabric.org/en/products/airtime_overview/

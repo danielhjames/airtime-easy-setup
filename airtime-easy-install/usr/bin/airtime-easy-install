@@ -1,0 +1,16 @@
+#!/bin/bash
+# airtime-easy-install script
+
+set -e
+
+if [ "$DPKG_DEBUG" = "developer" ]; then
+    set -x
+fi
+
+    echo "Reload the package list, as we may have changed it"
+    apt-get update
+
+    echo "Install the apps"
+    apt-get -y install postgresql icecast2 airtime
+
+exit 0

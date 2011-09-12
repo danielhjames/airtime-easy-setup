@@ -7,6 +7,9 @@ if [ "$DPKG_DEBUG" = "developer" ]; then
     set -x
 fi
 
+# Set the path to the package signing key
+APT_KEY=/usr/share/keyrings/sourcefabric-key
+
 case "$1" in
   configure|reconfigure)
 
@@ -18,17 +21,13 @@ case "$1" in
     sed -i "s:squeeze:$DISTRONAME:g" /etc/apt/sources.list.d/sourcefabric.list
     fi
 
-    echo "Reload the package list, as we have changed it"
-    apt-get update
+    # Install the package signing key
+    apt-key add $APT_KEY
 
-    echo "Install the package signing key"
-    #apt-get -y install sourcefabric-keyring
-
-    echo "Reload the package list again, to use secure apt"
-    #apt-get update
-
-    echo "Install the apps"
-    #apt-get -y install postgresql icecast2 airtime
+    echo "Now running airtime-easy-install..."
+    mkdir -p /var/log/airtime
+    nohup /usr/bin/airtime-easy-install > /var/log/airtime/airtime-easy-install &
+    disown -h
 
   ;;
 
