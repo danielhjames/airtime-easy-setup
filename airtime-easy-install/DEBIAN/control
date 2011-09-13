@@ -3,7 +3,7 @@ Source: airtime
 Version: 1.9.4-1
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
-Installed-Size: 2
+Installed-Size: 4
 Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql
 Conflicts: sourcefabric-keyring
 Section: web

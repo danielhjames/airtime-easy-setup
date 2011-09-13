@@ -24,24 +24,28 @@ case "$1" in
     # Install the package signing key
     apt-key add $APT_KEY
 
-    # Get the system time zone
-    tmpfile=$(mktemp)
-     if [ -f "${tmpfile}" -a -w "${tmpfile}" ]; then
-      debconf-get-selections > "${tmpfile}"
-       set -- $(egrep '^tzdata[[:space:]]+tzdata/Areas[[:space:]]+select[[:space:]]+[^[:space:]]' "${tmpfile}")
-       while [ -n "$1" ]; do area="$1"; shift; done
-       set -- $(egrep "^tzdata[[:space:]]+tzdata/Zones/${area}[[:space:]]+select[[:space:]]+[^[:space:]]" "${tmpfile}")
-       while [ -n "$1" ]; do zone="$1"; shift; done
-       SYSTEMTIMEZONE="${area}/${zone}"
-       rm "${tmpfile}"
-     else
-      echo "error: failed to create tempfile" >&2
-     fi
+    # Get the system time zone, thanks to Müller Zsolt :-)
+    area="Etc"
+    zone="UTC"
+     ret="$(echo get tzdata/Areas | debconf-communicate)"
+      if [ $? -eq 0 ]; then
+       set -- $ret
+       shift
+       area="$@"
+       ret="$(echo get "tzdata/Zones/${area}" | debconf-communicate)"
+        if [ $? -eq 0 ]; then
+         set -- $ret
+         shift
+         zone="$@"
+        fi
+      fi
+
+    echo "Setting up Airtime for ${area}/${zone} timezone..."
 
     # Insert the system time zone into the preseed file
-    sed -i "s:Etc/UTC:$SYSTEMTIMEZONE:g" /usr/share/airtime/debconf-selections
+    sed -i "s:Etc/UTC:${area}/${zone}:g" /usr/share/airtime/debconf-selections
 
-    echo "Now running airtime-easy-install..."
+    echo "Now running airtime-easy-install script..."
     mkdir -p /var/log/airtime
     nohup /usr/bin/airtime-easy-install > /var/log/airtime/airtime-easy-install &
     disown -h
