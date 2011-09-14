@@ -8,7 +8,7 @@ if [ "$DPKG_DEBUG" = "developer" ]; then
 fi
 
 # Set the path to the package signing key
-APT_KEY=/usr/share/keyrings/sourcefabric-key
+APT_KEY=/usr/share/keyrings/airtime-easy-install-key
 
 case "$1" in
   configure|reconfigure)
@@ -22,7 +22,10 @@ case "$1" in
     fi
 
     # Install the package signing key
+    if [ ! -f /usr/share/keyrings/sourcefabric-key ]; then
+    echo "Installing Sourcefabric package signing key..."
     apt-key add $APT_KEY
+    fi
 
     # Get the system time zone, thanks to Müller Zsolt :-)
     area="Etc"

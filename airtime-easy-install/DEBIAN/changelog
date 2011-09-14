@@ -1,4 +1,10 @@
-airtime-easy-install (1.94-1) unstable; urgency=low
+airtime-easy-install (1.9.4-2) unstable; urgency=low
+
+  * Don't conflict with sourcefabric-keyring
+
+ -- Daniel James <daniel@64studio.com>  Wed, 14 Sep 2011 14:49:01 +0100
+
+airtime-easy-install (1.9.4-1) unstable; urgency=low
 
   * Initial build of metapackage
 
