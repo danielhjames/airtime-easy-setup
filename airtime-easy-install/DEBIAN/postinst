@@ -16,15 +16,24 @@ case "$1" in
     # Find the distro we are installing on
     DISTRONAME=$(lsb_release -sc)
 
-    # Replace the default with the name of the current distro
-    if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
-    sed -i "s:squeeze:$DISTRONAME:g" /etc/apt/sources.list.d/sourcefabric.list
+    # Replace the Debian repo with the correct repo if we are running Ubuntu
+    if [ "$DISTRONAME" != "squeeze" ]; then
+     if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
+      sed -i "2s:squeeze:$DISTRONAME:g" /etc/apt/sources.list.d/sourcefabric.list
+     fi
+    fi
+
+    # Set up multimedia repo if we are running Debian stable rather than Ubuntu
+    if [ "$DISTRONAME" = "squeeze" ]; then
+     if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
+      sed -i "5s:#deb:deb:g" /etc/apt/sources.list.d/sourcefabric.list
+     fi
     fi
 
     # Install the package signing key
     if [ ! -f /usr/share/keyrings/sourcefabric-key ]; then
-    echo "Installing Sourcefabric package signing key..."
-    apt-key add $APT_KEY
+     echo "Installing Sourcefabric package signing key..."
+     apt-key add $APT_KEY
     fi
 
     # Get the system time zone, thanks to Müller Zsolt :-)

@@ -1,3 +1,9 @@
+airtime-easy-install (1.9.4-3) unstable; urgency=low
+
+  * Set up multimedia repository for Debian squeeze systems
+
+ -- Daniel James <daniel@64studio.com>  Thu, 15 Sep 2011 14:43:12 +0100
+
 airtime-easy-install (1.9.4-2) unstable; urgency=low
 
   * Don't conflict with sourcefabric-keyring
