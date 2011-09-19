@@ -57,10 +57,11 @@ case "$1" in
     # Insert the system time zone into the preseed file
     sed -i "s:Etc/UTC:${area}/${zone}:g" /usr/share/airtime/debconf-selections
 
-    echo "Now running airtime-easy-install script..."
+    echo "Now running the airtime-easy-install script..."
     mkdir -p /var/log/airtime
     nohup /usr/bin/airtime-easy-install > /var/log/airtime/airtime-easy-install &
     disown -h
+    echo "Please check the installation report /var/log/airtime/airtime-easy-install"
 
   ;;
 

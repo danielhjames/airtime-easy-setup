@@ -1,3 +1,9 @@
+airtime-easy-install (1.9.4-4) unstable; urgency=low
+
+  * Point user to log file so they can check installation
+
+ -- Daniel James <daniel@64studio.com>  Mon, 19 Sep 2011 12:47:02 +0100
+
 airtime-easy-install (1.9.4-3) unstable; urgency=low
 
   * Set up multimedia repository for Debian squeeze systems
