@@ -1,9 +1,10 @@
 Package: airtime-easy-install
 Source: airtime
-Version: 1.9.4-4
+Version: 1.9.4-5
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
 Installed-Size: 4
+Pre-Depends: rabbitmq-server
 Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql
 Section: web
 Priority: optional
