@@ -1,11 +1,47 @@
 Package: airtime-easy-install
 Source: airtime
-Version: 1.9.4-5
+Version: 1.9.4-7
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
-Installed-Size: 4
-Pre-Depends: rabbitmq-server
-Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql
+Installed-Size: 5
+Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql,
+ apache2,
+ curl,
+ ecasound,
+ ed,
+ gzip (>= 1.3.12),
+ libao-ocaml,
+ libapache2-mod-php5,
+ libc6,
+ libcamomile-ocaml-dev,
+ libesd0,
+ libmad-ocaml,
+ libmp3lame-dev,
+ libportaudio2,
+ libsamplerate0,
+ libsoundtouch-ocaml,
+ libtaglib-ocaml,
+ libvorbis-ocaml-dev,
+ monit,
+ odbc-postgresql,
+ oggvideotools,
+ patch,
+ php5-cli,
+ php5-curl,
+ php5-gd,
+ php5-pgsql,
+ php-pear,
+ poc-streamer,
+ pwgen,
+ python2.6,
+ python-pip,
+ python-setuptools,
+ rabbitmq-server,
+ sudo,
+ sysv-rc, 
+ tar (>= 1.22),
+ unzip,
+ wwwconfig-common
 Section: web
 Priority: optional
 Homepage: http://www.sourcefabric.org/en/products/airtime_overview/

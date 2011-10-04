@@ -1,3 +1,21 @@
+airtime-easy-install (1.9.4-7) unstable; urgency=low
+
+  * Prompt the user to run apt-get install themself
+
+ -- Daniel James <daniel@64studio.com>  Tue, 04 Oct 2011 11:18:38 +0100
+
+airtime-easy-install (1.9.4-6) unstable; urgency=low
+
+  * Install more dependencies in the first stage
+
+ -- Daniel James <daniel@64studio.com>  Thu, 29 Sep 2011 12:15:38 +0100
+
+airtime-easy-install (1.9.4-5) unstable; urgency=low
+
+  * Make rabbitmq-server a Pre-Depends
+
+ -- Daniel James <daniel@64studio.com>  Mon, 26 Sep 2011 12:33:18 +0100
+
 airtime-easy-install (1.9.4-4) unstable; urgency=low
 
   * Point user to log file so they can check installation
