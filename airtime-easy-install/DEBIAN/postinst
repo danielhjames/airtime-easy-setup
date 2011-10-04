@@ -57,11 +57,19 @@ case "$1" in
     # Insert the system time zone into the preseed file
     sed -i "s:Etc/UTC:${area}/${zone}:g" /usr/share/airtime/debconf-selections
 
-    echo "Now running the airtime-easy-install script..."
-    mkdir -p /var/log/airtime
-    nohup /usr/bin/airtime-easy-install > /var/log/airtime/airtime-easy-install &
-    disown -h
-    echo "Please check the installation report /var/log/airtime/airtime-easy-install"
+    echo "Setting defaults for non-interactive installation..."
+    debconf-set-selections /usr/share/airtime/debconf-selections
+
+    echo -e "\n Now please run the commands: \n   sudo apt-get update \n   sudo apt-get install airtime \n"
+    echo -e "\n Installation of Airtime should be complete in a couple of minutes. \n You should then be able to log in to Airtime at http://localhost/"
+
+#    echo "Now running the airtime-easy-install script..."
+#    mkdir -p /var/log/airtime
+#    nohup /usr/bin/airtime-easy-install > /var/log/airtime/airtime-easy-install &
+#    disown -h
+
+#    echo -e "\n Installation of Airtime should be complete in a couple of minutes. \n You should then be able to log in to Airtime at http://localhost/"
+#    echo -e " While you're waiting, please check the installation report with: \n tail -f /var/log/airtime/airtime-easy-install"
 
   ;;
 
