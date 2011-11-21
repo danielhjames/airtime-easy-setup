@@ -1,10 +1,10 @@
 Package: airtime-easy-install
 Source: airtime
-Version: 1.9.4-7
+Version: 1.9.5-1
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
 Installed-Size: 5
-Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql,
+Depends: apt, debconf-utils, gnupg (>= 1.0.6-4), hostname, icecast2, lsb-release, postgresql,
  apache2,
  curl,
  ecasound,
@@ -40,13 +40,12 @@ Depends: debconf-utils, gnupg (>= 1.0.6-4), icecast2, lsb-release, postgresql,
  sudo,
  sysv-rc, 
  tar (>= 1.22),
- unzip,
- wwwconfig-common
+ unzip
 Section: web
 Priority: optional
 Homepage: http://www.sourcefabric.org/en/products/airtime_overview/
 Description: Metapackage for the Airtime broadcast server
- This metapackage installs the Airtime broadcast automation system
- and all the dependencies required for a typical self-contained server.
- For a multi-server install, you may prefer to install the airtime and
+ This metapackage installs the dependencies for the Airtime broadcast
+ automation system, and sets up a typical server configuration. For a
+ multi-server install, you may prefer to install the airtime and
  icecast2 packages separately. 
