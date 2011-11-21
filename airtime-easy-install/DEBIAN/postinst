@@ -9,6 +9,7 @@ fi
 
 # Set the path to the package signing key
 APT_KEY=/usr/share/keyrings/airtime-easy-install-key
+APT_KEY_DEBIAN=/usr/share/keyrings/debian-multimedia-key.gpg
 
 case "$1" in
   configure|reconfigure)
@@ -28,9 +29,13 @@ case "$1" in
      if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
       sed -i "5s:#deb:deb:g" /etc/apt/sources.list.d/sourcefabric.list
      fi
+     if [ ! -f /usr/share/keyrings/debian-multimedia-keyring.gpg ]; then
+     echo "Installing Debian Multimedia package signing key..."
+     apt-key add $APT_KEY_DEBIAN
+     fi
     fi
 
-    # Install the package signing key
+    # Install the Sourcefabric package signing key
     if [ ! -f /usr/share/keyrings/sourcefabric-key ]; then
      echo "Installing Sourcefabric package signing key..."
      apt-key add $APT_KEY
@@ -57,19 +62,20 @@ case "$1" in
     # Insert the system time zone into the preseed file
     sed -i "s:Etc/UTC:${area}/${zone}:g" /usr/share/airtime/debconf-selections
 
+    # Get the fully qualified domain name of the server
+    DOMAINNAME=$(hostname --fqdn)
+
+    echo "Setting Icecast and Airtime domain names to $DOMAINNAME..."
+
+    # Insert the domain name into the preseed file
+    sed -i "s:localhost:$DOMAINNAME:g" /usr/share/airtime/debconf-selections
+
     echo "Setting defaults for non-interactive installation..."
     debconf-set-selections /usr/share/airtime/debconf-selections
 
-    echo -e "\n Now please run the commands: \n   sudo apt-get update \n   sudo apt-get install airtime \n"
-    echo -e "\n Installation of Airtime should be complete in a couple of minutes. \n You should then be able to log in to Airtime at http://localhost/"
-
-#    echo "Now running the airtime-easy-install script..."
-#    mkdir -p /var/log/airtime
-#    nohup /usr/bin/airtime-easy-install > /var/log/airtime/airtime-easy-install &
-#    disown -h
-
-#    echo -e "\n Installation of Airtime should be complete in a couple of minutes. \n You should then be able to log in to Airtime at http://localhost/"
-#    echo -e " While you're waiting, please check the installation report with: \n tail -f /var/log/airtime/airtime-easy-install"
+    echo -e "\n Now please run the commands: \n   sudo apt-get update \n   sudo apt-get install airtime"
+    echo -e "\n After that, installation of Airtime should be complete in a couple of minutes."
+    echo -e "\n You should then be able to log in to Airtime at http://$DOMAINNAME/"
 
   ;;
 
