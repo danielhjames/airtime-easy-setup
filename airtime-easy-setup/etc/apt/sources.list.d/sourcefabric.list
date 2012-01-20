@@ -1,5 +1,5 @@
 # Sourcefabric package repository
 deb http://apt.sourcefabric.org/ squeeze main
 
-# Debian multimedia repository, not needed for Ubuntu
-#deb http://www.debian-multimedia.org stable main non-free
+# Debian backports repository, not needed for Ubuntu
+#deb http://backports.debian.org/debian-backports squeeze-backports main
