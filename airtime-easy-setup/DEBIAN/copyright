@@ -1,5 +1,5 @@
 Format: http://anonscm.debian.org/viewvc/dep/web/deps/dep5.mdwn?revision=174&view=markup
-Upstream-Name: airtime-easy-install
+Upstream-Name: airtime-easy-setup
 Upstream-Contact: Sourcefabric <airtime-dev@lists.sourcefabric.org>
 Source: git@dev.sourcefabric.org:airtime-easy-install
 
