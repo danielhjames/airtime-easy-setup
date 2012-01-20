@@ -8,8 +8,7 @@ if [ "$DPKG_DEBUG" = "developer" ]; then
 fi
 
 # Set the path to the package signing key
-APT_KEY=/usr/share/keyrings/airtime-easy-install-key
-APT_KEY_DEBIAN=/usr/share/keyrings/debian-multimedia-key.gpg
+APT_KEY=/usr/share/keyrings/airtime-easy-setup-key
 
 case "$1" in
   configure|reconfigure)
@@ -28,10 +27,6 @@ case "$1" in
     if [ "$DISTRONAME" = "squeeze" ]; then
      if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
       sed -i "5s:#deb:deb:g" /etc/apt/sources.list.d/sourcefabric.list
-     fi
-     if [ ! -f /usr/share/keyrings/debian-multimedia-keyring.gpg ]; then
-     echo "Installing Debian Multimedia package signing key..."
-     apt-key add $APT_KEY_DEBIAN
      fi
     fi
 
