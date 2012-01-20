@@ -1,3 +1,9 @@
+airtime-easy-setup (2.0.0-1) unstable; urgency=low
+
+  * Changed name of package to airtime-easy-setup
+
+ -- Daniel James <daniel@64studio.com>  Fri, 20 Jan 2012 16:09:23 +0000
+
 airtime-easy-install (1.9.4-7) unstable; urgency=low
 
   * Prompt the user to run apt-get install themself
