@@ -35,7 +35,7 @@ Depends: apt, debconf-utils, gnupg (>= 1.0.6-4), hostname, icecast2, lsb-release
  sysv-rc, 
  tar (>= 1.22),
  unzip,
- vorbis-tools,
+ vorbis-tools
 Section: web
 Priority: optional
 Homepage: http://www.sourcefabric.org/en/products/airtime_overview/
