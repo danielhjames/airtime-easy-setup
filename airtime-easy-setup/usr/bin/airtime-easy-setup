@@ -1,5 +1,5 @@
 #!/bin/bash
-# airtime-easy-install script
+# airtime-easy-setup script
 
 set -e
 
@@ -14,6 +14,6 @@ fi
     debconf-set-selections /usr/share/airtime/debconf-selections
 
     echo "Installing the Airtime system..."
-    DEBCONF_FRONTEND=noninteractive apt-get -y install airtime
+    DEBCONF_FRONTEND=noninteractive apt-get -y install liquidsoap airtime
 
 exit 0
