@@ -5,7 +5,7 @@ Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
 Installed-Size: 5
 Depends: apt, debconf-utils, gnupg (>= 1.0.6-4), hostname, icecast2, lsb-release, postgresql,
- python-virtualenv (>= 1.4.9),
+ python-virtualenv,
  apache2,
  curl,
  ecasound,
