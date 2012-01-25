@@ -1,3 +1,10 @@
+airtime-easy-setup (2.0.0-2) lucid; urgency=low
+
+  * Don't depend on too new a python-virtualenv before Sourcefabric repo
+    is set up
+
+ -- Daniel James <daniel@64studio.com>  Wed, 25 Jan 2012 18:32:30 +0000
+
 airtime-easy-setup (2.0.0-1) unstable; urgency=low
 
   * Changed name of package to airtime-easy-setup
