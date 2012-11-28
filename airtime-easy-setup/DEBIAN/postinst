@@ -76,21 +76,24 @@ case "$1" in
     echo -e "\n Now please run the commands:"
 
     else
-    echo -e "\n Warning: Your server's default locale: "
+    echo -e "\n Warning: Your server's default locale:"
     cat /etc/default/locale | sed -e "s:LANG=::g"
-    echo -e " does not appear to support UTF-8 encoding!"
+    echo -e "does not appear to support UTF-8 encoding!"
     echo -e "\n Airtime requires a UTF-8 locale to run. To fix this, please run the following command:"
 
          if [ "$DISTRONAME" != "squeeze" -a "$DISTRONAME" != "wheezy" ]; then
          echo -e "\n   sudo locale-gen ru_RU.UTF-8"
+         echo -e "\n   sudo update-locale LANG=ru_RU.UTF-8"
          echo -e "\n where ru_RU.UTF-8 is the UTF-8 version of your locale (Russian, in this example)."
          echo -e "\n A list of supported locales is available in the file /usr/share/i18n/SUPPORTED"
+         echo -e "\n You may need to log out from the server and log back in for the change to take effect."
          fi
 
          if [ "$DISTRONAME" = "squeeze" -o "$DISTRONAME" = "wheezy" ]; then
          echo -e "\n   sudo dpkg-reconfigure locales"
          echo -e "\n and select the UTF-8 version of your locale, for example ru_RU.UTF-8 for Russian."
          echo -e "\n On the second page, select this new locale as the default."
+         echo -e "\n You may need to log out from the server and log back in for the change to take effect."
          fi
 
     echo -e "\n Once these changes have been made, please run the commands:"
