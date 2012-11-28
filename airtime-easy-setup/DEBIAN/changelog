@@ -1,3 +1,11 @@
+airtime-easy-setup (2.2.1-1) lucid; urgency=low
+
+  * Add test for non-UTF-8 locale
+  * Update dependency list for Airtime 2.2.x
+  * Add Debian wheezy to supported distros
+
+ -- Daniel James <daniel@64studio.com>  Wed, 28 Nove 2012 13:13:13 +0000
+
 airtime-easy-setup (2.0.0-2) lucid; urgency=low
 
   * Don't depend on too new a python-virtualenv before Sourcefabric repo
