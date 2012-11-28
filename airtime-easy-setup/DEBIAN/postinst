@@ -1,5 +1,5 @@
 #!/bin/bash
-# postinst script for airtime-easy-install
+# postinst script for airtime-easy-setup
 
 set -e
 
@@ -16,14 +16,14 @@ case "$1" in
     # Find the distro we are installing on
     DISTRONAME=$(lsb_release -sc)
 
-    # Replace the Debian repo with the correct repo if we are running Ubuntu
+    # Replace the squeeze repo with the correct repo if we are running Ubuntu or Wheezy
     if [ "$DISTRONAME" != "squeeze" ]; then
      if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
       sed -i "2s:squeeze:$DISTRONAME:g" /etc/apt/sources.list.d/sourcefabric.list
      fi
     fi
 
-    # Set up multimedia repo if we are running Debian stable rather than Ubuntu
+    # Set up multimedia repo if we are running Debian squeeze rather than Ubuntu or Wheezy
     if [ "$DISTRONAME" = "squeeze" ]; then
      if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
       sed -i "5s:#deb:deb:g" /etc/apt/sources.list.d/sourcefabric.list
@@ -68,7 +68,32 @@ case "$1" in
     echo "Setting defaults for non-interactive installation..."
     debconf-set-selections /usr/share/airtime/debconf-selections
 
-    echo -e "\n Now please run the commands: \n   sudo apt-get update \n   sudo apt-get install airtime"
+    # Check that the server has a UTF-8 locale
+    update-locale
+    cat /etc/default/locale | grep -i "LANG=.*UTF-\?8"
+    if [ "$?" = "0" ]; then
+    echo -e "\n Now please run the commands:"
+
+    else
+    echo -e "\n Warning: Your server's default locale (in /etc/default/locale) does not support UTF-8 encoding!"
+    echo -e "\n Airtime requires a UTF-8 locale to run. To fix this, please run the following command:"
+
+         if [ "$DISTRONAME" != "squeeze" -a "$DISTRONAME" != "wheezy" ]; then
+         echo -e "\n   sudo locale-gen ru_RU.UTF-8"
+         echo -e "\n where ru_RU.UTF-8 is the UTF-8 version of your locale (Russian, in this example)."
+         echo -e "\n A list of supported locales is available in the file /usr/share/i18n/SUPPORTED"
+         fi
+
+         if [ "$DISTRONAME" = "squeeze" -o "$DISTRONAME" = "wheezy" ]; then
+         echo -e "\n   sudo dpkg-reconfigure locales"
+         echo -e "\n and select the UTF-8 version of your locale, for example ru_RU.UTF-8 for Russian."
+         echo -e "\n On the second page, select this new locale as the default."
+         fi
+
+    echo -e "\n Once these changes have been made, please run the commands:"
+    fi
+
+    echo -e "\n   sudo apt-get update \n   sudo apt-get install airtime"
     echo -e "\n After that, installation of Airtime should be complete in a couple of minutes."
     echo -e "\n You should then be able to log in to Airtime at http://$DOMAINNAME/"
 
