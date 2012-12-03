@@ -70,8 +70,10 @@ case "$1" in
 
     # Check that the server has a UTF-8 locale
     update-locale
-    DEFAULTLOCALE=$(cat /etc/default/locale | sed -e "s:LANG=::g")
-    if [[ "$DEFAULTLOCALE" = *"UTF-8" ]]; then
+    DEFAULTLOCALE=$(grep LANG= /etc/default/locale | sed 's:LANG=::g')
+    SUPPORTEDLOCALE=$(grep $DEFAULTLOCALE /usr/share/i18n/SUPPORTED)
+
+    if [[ "$SUPPORTEDLOCALE" = *"UTF-8" ]]; then
     echo -e "$DEFAULTLOCALE is the default locale on this server and appears to support UTF-8 encoding."
     echo -e "\n Now please run the commands:"
 
@@ -83,15 +85,15 @@ case "$1" in
          echo -e "\n   sudo locale-gen ru_RU.UTF-8"
          echo -e "\n   sudo update-locale LANG=ru_RU.UTF-8"
          echo -e "\n where ru_RU.UTF-8 is the UTF-8 version of your locale (Russian, in this example)."
-         echo -e "\n A list of supported locales is available in the file /usr/share/i18n/SUPPORTED"
-         echo -e "\n You may need to log out from the server and log back in for the change to take effect."
+         echo -e "\n Both UTF-8 and non-UTF-8 locales are listed in /usr/share/i18n/SUPPORTED"
+         echo -e "\n You may need to log out from the server and log back in for this change to take effect."
          fi
 
          if [ "$DISTRONAME" = "squeeze" -o "$DISTRONAME" = "wheezy" ]; then
          echo -e "\n   sudo dpkg-reconfigure locales"
          echo -e "\n and select the UTF-8 version of your locale, for example ru_RU.UTF-8 for Russian."
          echo -e "\n On the second page, select this new locale as the default."
-         echo -e "\n You may need to log out from the server and log back in for the change to take effect."
+         echo -e "\n You may need to log out from the server and log back in for this change to take effect."
          fi
 
     echo -e "\n Once these changes have been made, please run the commands:"
