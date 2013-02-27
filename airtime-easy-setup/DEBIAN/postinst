@@ -68,7 +68,7 @@ case "$1" in
     echo "Setting defaults for non-interactive installation..."
     debconf-set-selections /usr/share/airtime/debconf-selections
 
-    # Check that the server has a UTF-8 locale
+    echo "Checking that the server has a UTF-8 locale..."
     update-locale
     DEFAULTLOCALE=$(grep LANG= /etc/default/locale | sed 's:LANG=::g')
     SUPPORTEDLOCALE=$(grep $DEFAULTLOCALE /usr/share/i18n/SUPPORTED)

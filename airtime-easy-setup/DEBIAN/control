@@ -1,10 +1,10 @@
 Package: airtime-easy-setup
 Source: airtime
-Version: 2.2.1-1
+Version: 2.3.0-1
 Architecture: all
 Maintainer: Daniel James <daniel@64studio.com>
 Installed-Size: 5
-Depends: apt, debconf-utils, gnupg (>= 1.0.6-4), hostname, icecast2, locale | libc-bin, lsb-release, postgresql, python-virtualenv,
+Depends: apt, debconf-utils, gnupg (>= 1.0.6-4), hostname, icecast2, libc-bin, locales, lsb-release, postgresql, python-virtualenv,
  apache2,
  coreutils (>= 7.5) | timeout,
  curl,
