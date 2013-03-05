@@ -70,7 +70,7 @@ case "$1" in
 
     echo "Checking that the server has a UTF-8 locale..."
     update-locale
-    DEFAULTLOCALE=$(grep LANG= /etc/default/locale | sed 's:LANG=::g')
+    DEFAULTLOCALE=$(grep LANG= /etc/default/locale | sed 's:LANG=::' | sed 's:"::g')
     SUPPORTEDLOCALE=$(grep $DEFAULTLOCALE /usr/share/i18n/SUPPORTED)
 
     if [[ "$SUPPORTEDLOCALE" = *"UTF-8" ]]; then
