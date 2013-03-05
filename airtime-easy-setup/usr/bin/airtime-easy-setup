@@ -7,11 +7,16 @@ if [ "$DPKG_DEBUG" = "developer" ]; then
     set -x
 fi
 
+if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo "You need to run the airtime-easy-setup script as root, or with sudo!"
+    exit
+fi
+
     echo "Reloading the package list, as it may have changed..."
     apt-get update
 
     echo "Setting defaults for non-interactive installation..."
-    debconf-set-selections /usr/share/airtime/debconf-selections
+    debconf-set-selections /usr/share/airtime-easy-setup/debconf-selections
 
     echo "Installing the Airtime system..."
     DEBCONF_FRONTEND=noninteractive apt-get -y install liquidsoap airtime
