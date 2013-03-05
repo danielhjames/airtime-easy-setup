@@ -22,4 +22,8 @@ airtime	airtime/icecast-adminpw	string	donthackme
 airtime	airtime/icecast-setup	boolean	true
 # Set local timezone:
 airtime	airtime/localtime-setup	string	Etc/UTC
+# Airtime Storage Directory:
+airtime airtime/storage-directory	string	/srv/airtime/stor/
+# Airtime Admin Password:
+airtime airtime/admin-password		string	admin
 

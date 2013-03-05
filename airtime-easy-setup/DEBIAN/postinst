@@ -55,7 +55,7 @@ case "$1" in
     echo "Setting up Airtime for ${area}/${zone} timezone..."
 
     # Insert the system time zone into the preseed file
-    sed -i "s:Etc/UTC:${area}/${zone}:g" /usr/share/airtime/debconf-selections
+    sed -i "s:Etc/UTC:${area}/${zone}:g" /usr/share/airtime-easy-setup/debconf-selections
 
     # Get the fully qualified domain name of the server
     DOMAINNAME=$(hostname --fqdn)
@@ -63,10 +63,10 @@ case "$1" in
     echo "Setting Icecast and Airtime domain names to $DOMAINNAME..."
 
     # Insert the domain name into the preseed file
-    sed -i "s:localhost:$DOMAINNAME:g" /usr/share/airtime/debconf-selections
+    sed -i "s:localhost:$DOMAINNAME:g" /usr/share/airtime-easy-setup/debconf-selections
 
     echo "Setting defaults for non-interactive installation..."
-    debconf-set-selections /usr/share/airtime/debconf-selections
+    debconf-set-selections /usr/share/airtime-easy-setup/debconf-selections
 
     echo "Checking that the server has a UTF-8 locale..."
     update-locale
