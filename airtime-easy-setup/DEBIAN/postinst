@@ -71,14 +71,17 @@ case "$1" in
     echo "Checking that the server has a UTF-8 locale..."
     update-locale
     DEFAULTLOCALE=$(grep LANG= /etc/default/locale | sed 's:LANG=::' | sed 's:"::g')
-    SUPPORTEDLOCALE=$(grep $DEFAULTLOCALE /usr/share/i18n/SUPPORTED)
+
+    if [[ -n "$DEFAULTLOCALE" ]]; then
+     SUPPORTEDLOCALE=$(grep $DEFAULTLOCALE /usr/share/i18n/SUPPORTED)
+    fi
 
     if [[ "$SUPPORTEDLOCALE" = *"UTF-8" ]]; then
     echo -e "$DEFAULTLOCALE is the default locale on this server and appears to support UTF-8 encoding."
     echo -e "\n Now please run the commands:"
 
     else
-    echo -e "\n Warning: Your server's default locale $DEFAULTLOCALE may not support UTF-8 encoding, please check it!"
+    echo -e "\n Warning: Your server's default locale $DEFAULTLOCALE may not support UTF-8 encoding, please check it."
     echo -e "\n Airtime requires a UTF-8 locale to run. If you need to fix this, please run the following commands:"
 
          if [ "$DISTRONAME" != "squeeze" -a "$DISTRONAME" != "wheezy" ]; then
