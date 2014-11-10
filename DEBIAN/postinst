@@ -16,10 +16,13 @@ case "$1" in
     # Find the distro we are installing on
     DISTRONAME=$(lsb_release -sc)
 
-    # Replace the squeeze repo with the correct repo if we are running Ubuntu or Wheezy
-    if [ "$DISTRONAME" != "squeeze" ]; then
+    # Replace the squeeze repo with the correct repo if we are running Ubuntu LTS or Debian Wheezy
+    if [ "$DISTRONAME" = "lucid" -o "$DISTRONAME" = "precise" -o  "$DISTRONAME" = "trusty" -o  "$DISTRONAME" = "wheezy" ]; then
      if [ -f /etc/apt/sources.list.d/sourcefabric.list ]; then
-      sed -i "2s:squeeze:$DISTRONAME:g" /etc/apt/sources.list.d/sourcefabric.list
+      sed -i "2s:squeeze:$DISTRONAME:" /etc/apt/sources.list.d/sourcefabric.list
+     else
+      echo "Unsupported distro!"
+      sed -i "2s:deb:#deb:" /etc/apt/sources.list.d/sourcefabric.list 
      fi
     fi
 
